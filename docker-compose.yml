@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: junior-postgresql
+    environment:
+      POSTGRES_DB: solarSystem
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5433:5432
+    volumes:
+      - ./.data/postgresql/data:/var/lib/junin/data
+
+  rabbitmq:
+    image: rabbitmq:3.7.8-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
